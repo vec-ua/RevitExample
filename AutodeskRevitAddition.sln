@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitApp", "RevitApp\RevitApp.csproj", "{4952B041-142F-43A0-8501-B63BBB9FE4D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{D4A978A7-F6CF-46A4-842F-FA6B9BC6C8F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{7AF727A2-807C-4F54-906E-DA42DE01D2F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateFloorPlugin", "CreateFloorPlugin\CreateFloorPlugin.csproj", "{8D8457B5-C7BF-486D-A557-5B058349F77D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4952B041-142F-43A0-8501-B63BBB9FE4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4952B041-142F-43A0-8501-B63BBB9FE4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4952B041-142F-43A0-8501-B63BBB9FE4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4952B041-142F-43A0-8501-B63BBB9FE4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF727A2-807C-4F54-906E-DA42DE01D2F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF727A2-807C-4F54-906E-DA42DE01D2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF727A2-807C-4F54-906E-DA42DE01D2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF727A2-807C-4F54-906E-DA42DE01D2F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D8457B5-C7BF-486D-A557-5B058349F77D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D8457B5-C7BF-486D-A557-5B058349F77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D8457B5-C7BF-486D-A557-5B058349F77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D8457B5-C7BF-486D-A557-5B058349F77D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7AF727A2-807C-4F54-906E-DA42DE01D2F4} = {D4A978A7-F6CF-46A4-842F-FA6B9BC6C8F3}
+		{8D8457B5-C7BF-486D-A557-5B058349F77D} = {D4A978A7-F6CF-46A4-842F-FA6B9BC6C8F3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A00FC64-5E48-4D99-B460-BC766D6E68B4}
+	EndGlobalSection
+EndGlobal

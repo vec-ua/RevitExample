@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:plugsec="clr-namespace:RevitApp.Views.TemplateSelectors">
+
+    <!-- Селектор шаблона для плагинов -->
+    <plugsec:PluginTemplateSelector x:Key="PluginTemplateSelector"/>
+
+</ResourceDictionary>
