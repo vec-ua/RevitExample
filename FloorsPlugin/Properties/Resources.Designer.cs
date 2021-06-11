@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RevitApp.Properties {
+namespace FloorsPlugin.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace RevitApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace RevitApp.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RevitApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FloorsPlugin.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace RevitApp.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,20 +61,20 @@ namespace RevitApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Название плагина.
+        ///   Looks up a localized string similar to Этажи из Excel файла.
         /// </summary>
-        public static string Caption_NameOfPlugin {
+        internal static string Title_Plugin {
             get {
-                return ResourceManager.GetString("Caption_NameOfPlugin", resourceCulture);
+                return ResourceManager.GetString("Title_Plugin", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Вид плагина.
+        ///   Looks up a localized string similar to Загрузка данных из Excel файла для отрисовки этажей.
         /// </summary>
-        public static string Caption_ViewPlugin {
+        internal static string ToolTip_Button {
             get {
-                return ResourceManager.GetString("Caption_ViewPlugin", resourceCulture);
+                return ResourceManager.GetString("ToolTip_Button", resourceCulture);
             }
         }
     }

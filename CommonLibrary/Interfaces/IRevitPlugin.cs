@@ -1,29 +1,37 @@
-﻿using CommonLibrary.Models;
-using System;
+﻿using System;
 
 namespace CommonLibrary.Interfaces
 {
-    /// <summary>
-    /// Интерфейс плагина для подключения к программе
-    /// </summary>
     public interface IRevitPlugin
     {
 		/// <summary>
-		/// Глобальный уникальный идентификатор
+		/// Название плагина
 		/// </summary>
-		Guid PluginGuid
+		String PlaginName
 		{ get; }
 
 		/// <summary>
-		/// Тип плагина в виде строки
+		/// Полный путь к файлу
 		/// </summary>
-		String PluginType
+		String FillPathName
 		{ get; }
 
 		/// <summary>
-		/// Контекст представления модели для плагина
+		/// Подсказка для кнопки
 		/// </summary>
-		AbstractViewModel Context
+		String ToolTipButton
+		{ get; }
+
+		/// <summary>
+		/// Путь к команде
+		/// </summary>
+		String CommandPath
+		{ get; }
+
+		/// <summary>
+		/// Ресурс рисунка
+		/// </summary>
+		Uri BitmapUri
 		{ get; }
 	}
 }

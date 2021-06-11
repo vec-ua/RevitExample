@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FRMT_EXCEL_FILTER" xml:space="preserve">
-    <value>excel files (*.{0})|*.{1}</value>
+  <data name="Frmt_Exception_Srting" xml:space="preserve">
+    <value>Задача - ID потока: {0}, название потока: {1}, имя процесса: {2}</value>
   </data>
-  <data name="STR_EXCEL_EXT" xml:space="preserve">
-    <value>xlsx</value>
+  <data name="Msg_Exception_TabName_Is_Null" xml:space="preserve">
+    <value>Не указано название вкладки для панели</value>
   </data>
-  <data name="STR_GUID" xml:space="preserve">
-    <value>8174769e-80e2-4de8-8ff3-87e7bb823e1f</value>
+  <data name="Msg_Exception_TabPanel_Is_Null" xml:space="preserve">
+    <value>Не указано название панели</value>
   </data>
-  <data name="STR_TITLE_OPEN_FILE_EXCEL" xml:space="preserve">
-    <value>Открыть файл Microsoft Excel</value>
+  <data name="Msg_Exception_UIControlledApplication_Is_Null" xml:space="preserve">
+    <value>Не указан пользовательский интерфейс Autodesk Revit</value>
   </data>
-  <data name="STR_TYPE_PLUGIN" xml:space="preserve">
-    <value>Создание этажей для Revit</value>
+  <data name="Msg_ExternalMessage" xml:space="preserve">
+    <value>Внешнее сообщение:</value>
   </data>
 </root>

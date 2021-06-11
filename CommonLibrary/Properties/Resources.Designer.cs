@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreateFloorPlugin.Properties {
+namespace CommonLibrary.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CreateFloorPlugin.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CreateFloorPlugin.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CommonLibrary.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,47 @@ namespace CreateFloorPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to excel files (*.{0})|*.{1}.
+        ///   Looks up a localized string similar to Задача - ID потока: {0}, название потока: {1}, имя процесса: {2}.
         /// </summary>
-        public static string FRMT_EXCEL_FILTER {
+        public static string Frmt_Exception_Srting {
             get {
-                return ResourceManager.GetString("FRMT_EXCEL_FILTER", resourceCulture);
+                return ResourceManager.GetString("Frmt_Exception_Srting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to xlsx.
+        ///   Looks up a localized string similar to Не указано название вкладки для панели.
         /// </summary>
-        public static string STR_EXCEL_EXT {
+        public static string Msg_Exception_TabName_Is_Null {
             get {
-                return ResourceManager.GetString("STR_EXCEL_EXT", resourceCulture);
+                return ResourceManager.GetString("Msg_Exception_TabName_Is_Null", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8174769e-80e2-4de8-8ff3-87e7bb823e1f.
+        ///   Looks up a localized string similar to Не указано название панели.
         /// </summary>
-        public static string STR_GUID {
+        public static string Msg_Exception_TabPanel_Is_Null {
             get {
-                return ResourceManager.GetString("STR_GUID", resourceCulture);
+                return ResourceManager.GetString("Msg_Exception_TabPanel_Is_Null", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Открыть файл Microsoft Excel.
+        ///   Looks up a localized string similar to Не указан пользовательский интерфейс Autodesk Revit.
         /// </summary>
-        public static string STR_TITLE_OPEN_FILE_EXCEL {
+        public static string Msg_Exception_UIControlledApplication_Is_Null {
             get {
-                return ResourceManager.GetString("STR_TITLE_OPEN_FILE_EXCEL", resourceCulture);
+                return ResourceManager.GetString("Msg_Exception_UIControlledApplication_Is_Null", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Создание этажей для Revit.
+        ///   Looks up a localized string similar to Внешнее сообщение:.
         /// </summary>
-        public static string STR_TYPE_PLUGIN {
+        public static string Msg_ExternalMessage {
             get {
-                return ResourceManager.GetString("STR_TYPE_PLUGIN", resourceCulture);
+                return ResourceManager.GetString("Msg_ExternalMessage", resourceCulture);
             }
         }
     }
