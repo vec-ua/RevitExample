@@ -1,9 +1,10 @@
-﻿using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using CommonLibrary.Models;
 using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
+using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace FloorsPlugin.Commands
@@ -11,8 +12,7 @@ namespace FloorsPlugin.Commands
     /// <summary>
     /// Класс команды для выполнения загрузки этажей из Excel файла
     /// </summary>
-    [Transaction(TransactionMode.Manual)]
-    public sealed class CreateFloorFromExcelCommand : IExternalCommand
+    public sealed class CreateFloorFromExcelCommand : AbstractExecuteCommand
     {
         /// <summary>
         /// Этот метод реализует внешнюю команду внутри  Revit.
@@ -36,13 +36,25 @@ namespace FloorsPlugin.Commands
         /// пользователем. Если это не удастся, Revit отменит все изменения, внесенные
         /// внешней командой.
         /// </returns>	  
-        public Result Execute(ExternalCommandData commandData, ref String message, ElementSet elements)
+        public override Result Execute(ExternalCommandData commandData, ref String message, ElementSet elements)
         {
+            return Execute(commandData.Application, ref message);
+        }
+
+        /// <summary>
+        /// Этот метод реализует внешнюю команду внутри  Revit
+        /// </summary>
+        /// <param name="uiapp">Приложение</param>
+        /// <returns>Результат выполнения</returns>
+        public override Result Execute(UIApplication uiapp, ref String message)
+        {
+            message = "Second";
+            return Result.Succeeded;
+
+            /*
             Excel.Application xlApp = null;
             Excel.Workbook xlWorkBook = null;
             Excel.Worksheet xlWorkSheet = null;
-
-            Transaction tr = new Transaction(commandData.Application.ActiveUIDocument.Document);
 
             try
             {
@@ -54,24 +66,20 @@ namespace FloorsPlugin.Commands
                     xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                     Excel.Range range = xlWorkSheet.UsedRange;
 
-                    tr.Start("Добавление уровней из Excel");
                     for (Int32 rIdx = 1; rIdx <= range.Rows.Count; rIdx++)
                     {
                         Int32 elevation = 0;
                         if (Int32.TryParse((range.Cells[rIdx, 2] as Excel.Range).Value2.ToString(), out elevation))
                         {
-                            Level lvl = Level.Create(commandData.Application.ActiveUIDocument.Document, elevation);
+                            Level lvl = Level.Create(uiapp.ActiveUIDocument.Document, elevation);
                             lvl.Name = (range.Cells[rIdx, 1] as Excel.Range).Value2.ToString();
                         }
                     }
-                    tr.Commit();
                 }
-
-                return Result.Succeeded;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                message = ex.Message;
+                MessageBox.Show(ex.Message);
                 return Result.Failed;
             }
             finally
@@ -90,9 +98,10 @@ namespace FloorsPlugin.Commands
                     xlApp.Quit();
                     Marshal.ReleaseComObject(xlApp);
                 }
-
-                tr.Dispose();
             }
+
+            return Result.Succeeded;
+            */
         }
     }
 }

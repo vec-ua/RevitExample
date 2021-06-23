@@ -61,6 +61,15 @@ namespace FloorsPlugin.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Импорт или экспорт.
+        /// </summary>
+        internal static string Title_Panel {
+            get {
+                return ResourceManager.GetString("Title_Panel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Этажи из Excel файла.
         /// </summary>
         internal static string Title_Plugin {

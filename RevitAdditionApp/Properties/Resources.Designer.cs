@@ -70,15 +70,6 @@ namespace RevitAdditionApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Главное приложение.
-        /// </summary>
-        internal static string Title {
-            get {
-                return ResourceManager.GetString("Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Вкладка для приложения.
         /// </summary>
         internal static string Title_Tab {

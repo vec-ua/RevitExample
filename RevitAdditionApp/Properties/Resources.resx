@@ -120,9 +120,6 @@
   <data name="Btn_ApplicationView_ToolTip" xml:space="preserve">
     <value>Общее приложения для работы с данными</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Главное приложение</value>
-  </data>
   <data name="Title_Tab" xml:space="preserve">
     <value>Вкладка для приложения</value>
   </data>

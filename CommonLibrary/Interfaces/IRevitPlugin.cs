@@ -1,19 +1,31 @@
-﻿using System;
+﻿using CommonLibrary.Models;
+using System;
+using System.ComponentModel.Composition;
 
 namespace CommonLibrary.Interfaces
 {
-    public interface IRevitPlugin
+	/// <summary>
+	/// Интерфейс плагина
+	/// </summary>
+	[InheritedExport(typeof(IRevitPlugin))]
+	public interface IRevitPlugin
     {
 		/// <summary>
-		/// Название плагина
+		/// Серийный номер
 		/// </summary>
-		String PlaginName
+		Guid SerialNumber
 		{ get; }
 
 		/// <summary>
-		/// Полный путь к файлу
+		/// Название плагина
 		/// </summary>
-		String FillPathName
+		String Name
+		{ get; }
+
+		/// <summary>
+		/// Название панели
+		/// </summary>
+		String PanelName
 		{ get; }
 
 		/// <summary>
@@ -23,10 +35,16 @@ namespace CommonLibrary.Interfaces
 		{ get; }
 
 		/// <summary>
-		/// Путь к команде
+		/// Команда
 		/// </summary>
-		String CommandPath
+		AbstractExecuteCommand Command
 		{ get; }
+
+		/// <summary>
+		/// Флаг видимости плагина
+		/// </summary>
+		Boolean Visible
+		{ get; set; }
 
 		/// <summary>
 		/// Ресурс рисунка

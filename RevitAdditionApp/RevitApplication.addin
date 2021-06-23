@@ -2,7 +2,7 @@
 <RevitAddIns>
   <AddIn Type="Application">
     <Name>Дополнение в виде приложения для выполнения некоторых заданий</Name>
-    <Assembly>d:\Projects (My)\___Tests\AutodeskRevitAddition\_OUT\RevitAdditionApp.dll</Assembly>
+    <Assembly>d:\Projects (My)\CSharp\Test\Revit\_OUT\RevitAdditionApp.dll</Assembly>
     <AddInId>d3c0ac65-c993-4ded-83bc-c1ab57c8a78f</AddInId>
     <FullClassName>RevitAdditionApp.RevitApplication</FullClassName>
     <VendorId>Artem Shahanov</VendorId>

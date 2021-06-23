@@ -1,0 +1,29 @@
+﻿<Window x:Class="RevitAdditionApp.View.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RevitAdditionApp.View"
+        mc:Ignorable="d"
+        Title="SettingsView" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Button Content="Подключить" Command="{Binding RefreshPluginsFromCatalogCommand}"/>
+            <TreeView Height="165" VerticalAlignment="Top" ItemsSource="{Binding Panels}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Source.Items}">
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" Margin="5,0" />
+                                    <CheckBox Focusable="False" IsChecked="{Binding Visible}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                        <TextBlock Text="{Binding Source.Title}" Margin="5,0" />
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </StackPanel>
+    </Grid>
+</Window>
