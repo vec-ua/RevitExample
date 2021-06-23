@@ -6,7 +6,7 @@ namespace FloorsPlugin.Settings
     /// <summary>
     /// Класс представления секции настроек кнопки
     /// </summary>
-    [SettingsGroupName("General")]
+    [SettingsGroupName("FloorsPluginGeneral")]
     public sealed class GeneralSettings : ApplicationSettingsBase
     {
         /// <summary>

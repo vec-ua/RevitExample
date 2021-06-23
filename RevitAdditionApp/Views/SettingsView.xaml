@@ -4,26 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RevitAdditionApp.View"
+        xmlns:beh="clr-namespace:RevitAdditionApp.Behaviors"
         mc:Ignorable="d"
-        Title="SettingsView" Height="450" Width="800">
+        Title="SettingsView" Height="450" Width="800"
+        beh:WindowStyleBehavior.DisableMinimizeButton="True"
+        beh:WindowStyleBehavior.DisableMaximizeButton="True">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Button Content="Подключить" Command="{Binding RefreshPluginsFromCatalogCommand}"/>
-            <TreeView Height="165" VerticalAlignment="Top" ItemsSource="{Binding Panels}">
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Source.Items}">
-                        <HierarchicalDataTemplate.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Name}" Margin="5,0" />
-                                    <CheckBox Focusable="False" IsChecked="{Binding Visible}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </HierarchicalDataTemplate.ItemTemplate>
-                        <TextBlock Text="{Binding Source.Title}" Margin="5,0" />
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель кнопок для выподнения операций по настройке -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <!-- Кнопка обновления плагинов -->
+            <Button Grid.Row="0" Width="150" Content="Обновить плагины" Command="{Binding RefreshPluginsFromCatalogCommand}" Margin="2"/>
         </StackPanel>
+
+        <!-- Дерево отображающее все настройки кнопок -->
+        <TreeView Grid.Row="1" ItemsSource="{Binding Panels}" Margin="2,0,2,2">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Source.Items}">
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                
+                                <!-- Описание кнопки -->
+                                <TextBlock Text="{Binding Name}" Margin="5,0" />
+                                <!-- Флаг видимости кнопки -->
+                                <CheckBox Focusable="False" IsChecked="{Binding Visible}" VerticalAlignment="Center"/>
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                    
+                    <!-- Описание панели -->
+                    <TextBlock Text="{Binding Source.Title}" Margin="5,0" />
+                    
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
     </Grid>
 </Window>

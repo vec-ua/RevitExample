@@ -6,7 +6,7 @@ namespace MessageBoxPlugin.Settings
     /// <summary>
     /// Класс представления секции настроек кнопки
     /// </summary>
-    [SettingsGroupName("General")]
+    [SettingsGroupName("MessageBoxPluginGeneral")]
     public sealed class GeneralSettings : ApplicationSettingsBase
     {
         /// <summary>

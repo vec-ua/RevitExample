@@ -105,6 +105,7 @@ namespace RevitAdditionApp
                     continue;
 
                 aPanel.Source.Items.Clear();
+                aPanel.IsVisible = false;
             }
 
             try
@@ -128,8 +129,7 @@ namespace RevitAdditionApp
                         break;
 
                     aPanel.Source.Items.Add(new SecondRibbonButton(plugin.Value, uiapp, aPanel) { CommandHandler = new RelayCommand(DoExecute) });
-                    if (aPanel.Source.Items.Count == aPanel.Source.Items.Where(item => item.IsVisible == false).Count())
-                        aPanel.IsVisible = false;
+                    aPanel.IsVisible = !(aPanel.Source.Items.Count == aPanel.Source.Items.Where(item => item.IsVisible == false).Count());
                 }
             }
             catch (Exception ex)
