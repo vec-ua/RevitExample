@@ -97,15 +97,9 @@ namespace RevitAdditionApp
         /// <param name="assemblyPath">Путь к сборке</param>
         private void RegenerationInfo(UIApplication uiapp, String assemblyPath)
         {
-            CompositionContainer container = new CompositionContainer(LoadPluginsToMemory(Path.GetDirectoryName(assemblyPath)));
-            IEnumerable<Lazy<IRevitPlugin>> plugins = container.GetExports<IRevitPlugin>();
-
             RibbonControl ribbon = ComponentManager.Ribbon;
             RibbonTab tab = ribbon.Tabs.FirstOrDefault(item => item.Id.Contains(Resources.Title_Tab));
-            if (tab == null)
-                return;
-
-            foreach(Autodesk.Windows.RibbonPanel aPanel in tab.Panels)
+            foreach (Autodesk.Windows.RibbonPanel aPanel in tab.Panels)
             {
                 if (aPanel.Source.Title.Contains("Settings"))
                     continue;
@@ -113,21 +107,34 @@ namespace RevitAdditionApp
                 aPanel.Source.Items.Clear();
             }
 
-            foreach (Lazy<IRevitPlugin> plugin in plugins)
+            try
             {
-                Autodesk.Windows.RibbonPanel aPanel = tab.Panels.FirstOrDefault(item => item.Source.Title.Contains(plugin.Value.PanelName));
-                if (aPanel == null)
+                CompositionContainer container = new CompositionContainer(LoadPluginsToMemory(Path.GetDirectoryName(assemblyPath)));
+                IEnumerable<Lazy<IRevitPlugin>> plugins = container.GetExports<IRevitPlugin>();
+
+                if (tab == null)
+                    return;
+
+                foreach (Lazy<IRevitPlugin> plugin in plugins)
                 {
-                    PanelHelper.CreateRibbonPanel(cachedUiCtrApp, Resources.Title_Tab, plugin.Value.PanelName);
-                    aPanel = tab.Panels.FirstOrDefault(item => item.Source.Title.Contains(plugin.Value.PanelName));
+                    Autodesk.Windows.RibbonPanel aPanel = tab.Panels.FirstOrDefault(item => item.Source.Title.Contains(plugin.Value.PanelName));
+                    if (aPanel == null)
+                    {
+                        PanelHelper.CreateRibbonPanel(cachedUiCtrApp, Resources.Title_Tab, plugin.Value.PanelName);
+                        aPanel = tab.Panels.FirstOrDefault(item => item.Source.Title.Contains(plugin.Value.PanelName));
+                    }
+
+                    if (aPanel == null)
+                        break;
+
+                    aPanel.Source.Items.Add(new SecondRibbonButton(plugin.Value, uiapp, aPanel) { CommandHandler = new RelayCommand(DoExecute) });
+                    if (aPanel.Source.Items.Count == aPanel.Source.Items.Where(item => item.IsVisible == false).Count())
+                        aPanel.IsVisible = false;
                 }
-
-                if (aPanel == null)
-                    break;
-
-                aPanel.Source.Items.Add(new SecondRibbonButton(plugin.Value, uiapp, aPanel) { CommandHandler = new RelayCommand(DoExecute) });
-                if (aPanel.Source.Items.Count == aPanel.Source.Items.Where(item => item.IsVisible == false).Count())
-                    aPanel.IsVisible = false;
+            }
+            catch (Exception ex)
+            {
+                StringEvent.Execute(uiapp, ex.Message);
             }
         }
 

@@ -1,17 +1,15 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using CommonLibrary.Models;
-using Microsoft.Win32;
 using System;
-using System.Runtime.InteropServices;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows;
 
-namespace FloorsPlugin.Commands
+namespace MessageBoxPlugin.Commands
 {
     /// <summary>
-    /// Класс команды для выполнения загрузки этажей из Excel файла
+    /// Класс команды для выполнения отображения сообщения
     /// </summary>
-    public sealed class CreateFloorFromExcelCommand : AbstractExecuteCommand
+    public sealed class MessageBoxCommand : AbstractExecuteCommand
     {
         /// <summary>
         /// Этот метод реализует внешнюю команду внутри  Revit.
@@ -47,55 +45,9 @@ namespace FloorsPlugin.Commands
         /// <returns>Результат выполнения</returns>
         public override Result Execute(UIApplication uiapp, ref String message)
         {
-            Excel.Application xlApp = null;
-            Excel.Workbook xlWorkBook = null;
-            Excel.Worksheet xlWorkSheet = null;
-
-            try
-            {
-                OpenFileDialog file = new OpenFileDialog();
-                if (file.ShowDialog() == true)
-                {
-                    xlApp = new Excel.Application();
-                    xlWorkBook = xlApp.Workbooks.Open(file.FileName, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                    Excel.Range range = xlWorkSheet.UsedRange;
-
-                    for (Int32 rIdx = 1; rIdx <= range.Rows.Count; rIdx++)
-                    {
-                        Int32 elevation = 0;
-                        if (Int32.TryParse((range.Cells[rIdx, 2] as Excel.Range).Value2.ToString(), out elevation))
-                        {
-                            Level lvl = Level.Create(uiapp.ActiveUIDocument.Document, elevation);
-                            lvl.Name = (range.Cells[rIdx, 1] as Excel.Range).Value2.ToString();
-                        }
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                message = ex.Message;
-                return Result.Failed;
-            }
-            finally
-            {
-                if (xlWorkSheet != null)
-                    Marshal.ReleaseComObject(xlWorkSheet);
-
-                if (xlWorkBook != null)
-                {
-                    xlWorkBook.Close(true, null, null);
-                    Marshal.ReleaseComObject(xlWorkBook);
-                }
-
-                if (xlApp != null)
-                {
-                    xlApp.Quit();
-                    Marshal.ReleaseComObject(xlApp);
-                }
-            }
-
+            MessageBox.Show("Отображение сообщения для проверки плагина");
             return Result.Succeeded;
+
         }
     }
 }

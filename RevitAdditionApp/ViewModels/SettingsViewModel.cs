@@ -52,6 +52,7 @@ namespace RevitAdditionApp.ViewModels
         public SettingsViewModel(UIApplication application)
         {
             Application = application;
+            Panels = new ObservableCollection<Autodesk.Windows.RibbonPanel>();
             CheckPanels();
         }
         #endregion
@@ -83,12 +84,15 @@ namespace RevitAdditionApp.ViewModels
         {
             Autodesk.Windows.RibbonControl ribbon = Autodesk.Windows.ComponentManager.Ribbon;
             Autodesk.Windows.RibbonTab tab = ribbon.Tabs.FirstOrDefault(item => item.Id.Contains(Resources.Title_Tab));
-            Panels = new ObservableCollection<Autodesk.Windows.RibbonPanel>(tab.Panels);
-            RaisePropertyChanged("Panels");
+            
+            Panels.Clear();
+            foreach(Autodesk.Windows.RibbonPanel panel in tab.Panels)
+            {
+                if (panel.Source.Title.Contains("Settings") || (panel.Source.Items.Count <= 0))
+                    continue;
 
-            Autodesk.Windows.RibbonPanel settings = Panels.FirstOrDefault(item => item.Source.Title.Contains("Settings"));
-            if (settings != null)
-                Panels.Remove(settings);
+                Panels.Add(panel);
+            }
         }
         #endregion
     }
