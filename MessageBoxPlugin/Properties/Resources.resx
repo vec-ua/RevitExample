@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Title_Panel" xml:space="preserve">
-    <value>Визуализация</value>
+    <value>Visualization</value>
   </data>
   <data name="Title_Plugin" xml:space="preserve">
-    <value>Отображение сообщения</value>
+    <value>Display message</value>
   </data>
   <data name="ToolTip_Button" xml:space="preserve">
-    <value>Визуализация сообщения</value>
+    <value>Message visualization</value>
   </data>
 </root>

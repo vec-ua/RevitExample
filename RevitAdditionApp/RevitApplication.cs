@@ -1,43 +1,17 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Autodesk.Windows;
-using CommonLibrary.Commands;
-using CommonLibrary.Events;
-using CommonLibrary.Helpers;
 using CommonLibrary.Interfaces;
-using RevitAdditionApp.Properties;
 using RevitAdditionApp.View;
 using RevitAdditionApp.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace RevitAdditionApp
 {
     [Transaction(TransactionMode.Manual)]
     public class RevitApplication : IExternalApplication, IExternalCommand
     {
-        #region Fields
-        /// <summary>
-        /// Статическое поле приложения (кеш приложения)
-        /// </summary>
-        private static UIControlledApplication cachedUiCtrApp;
-
-        /// <summary>
-        /// Событие отвечающее за опопвещение сообщением
-        /// </summary>
-        private static StringEventHandler StringEvent;
-        #endregion
-
-        #region Methods
         /// <summary>
         /// Метод обработки при обращении Autodesk Revit к данному приложению
         /// </summary>
@@ -57,9 +31,10 @@ namespace RevitAdditionApp
         {
             try
             {
-                cachedUiCtrApp = application;
-                cachedUiCtrApp.Idling += CachedUiCtrApp_Idling;
-                StringEvent = new StringEventHandler();
+                RevitWorker.Instance.ImportUIControlledApplication(application);
+                RevitWorker.Instance.GenerateAllItems();
+                application.ControlledApplication.ApplicationInitialized += ControlledApplication_ApplicationInitialized;
+
                 return Result.Succeeded;
             }
             catch(Exception ex)
@@ -74,84 +49,9 @@ namespace RevitAdditionApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CachedUiCtrApp_Idling(object sender, Autodesk.Revit.UI.Events.IdlingEventArgs e)
+        private void ControlledApplication_ApplicationInitialized(object sender, Autodesk.Revit.DB.Events.ApplicationInitializedEventArgs e)
         {
-            cachedUiCtrApp.Idling -= CachedUiCtrApp_Idling;
-
-            Autodesk.Revit.UI.RibbonPanel panel = PanelHelper.CreateRibbonPanel(cachedUiCtrApp, Resources.Title_Tab, "Settings");
-            String thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
-
-            if (panel.AddItem(new PushButtonData("Settings", "Settings", thisAssemblyPath, "RevitAdditionApp.RevitApplication")) is PushButton settingsButton)
-            {
-                settingsButton.ToolTip = "Settings";
-                settingsButton.LargeImage = new BitmapImage(new Uri("pack://application:,,,/RevitAdditionApp;component/Images/Settings.png"));
-            }
-
-            RegenerationInfo(sender as UIApplication, thisAssemblyPath);
-        }
-
-        /// <summary>
-        /// Регенерация информации
-        /// </summary>
-        /// <param name="uiapp">Приложение</param>
-        /// <param name="assemblyPath">Путь к сборке</param>
-        private void RegenerationInfo(UIApplication uiapp, String assemblyPath)
-        {
-            RibbonControl ribbon = ComponentManager.Ribbon;
-            RibbonTab tab = ribbon.Tabs.FirstOrDefault(item => item.Id.Contains(Resources.Title_Tab));
-            foreach (Autodesk.Windows.RibbonPanel aPanel in tab.Panels)
-            {
-                if (aPanel.Source.Title.Contains("Settings"))
-                    continue;
-
-                aPanel.Source.Items.Clear();
-                aPanel.IsVisible = false;
-            }
-
-            try
-            {
-                CompositionContainer container = new CompositionContainer(LoadPluginsToMemory(Path.GetDirectoryName(assemblyPath)));
-                IEnumerable<Lazy<IRevitPlugin>> plugins = container.GetExports<IRevitPlugin>();
-
-                if (tab == null)
-                    return;
-
-                foreach (Lazy<IRevitPlugin> plugin in plugins)
-                {
-                    Autodesk.Windows.RibbonPanel aPanel = tab.Panels.FirstOrDefault(item => item.Source.Title.Contains(plugin.Value.PanelName));
-                    if (aPanel == null)
-                    {
-                        PanelHelper.CreateRibbonPanel(cachedUiCtrApp, Resources.Title_Tab, plugin.Value.PanelName);
-                        aPanel = tab.Panels.FirstOrDefault(item => item.Source.Title.Contains(plugin.Value.PanelName));
-                    }
-
-                    if (aPanel == null)
-                        break;
-
-                    aPanel.Source.Items.Add(new SecondRibbonButton(plugin.Value, uiapp, aPanel) { CommandHandler = new RelayCommand(DoExecute) });
-                    aPanel.IsVisible = !(aPanel.Source.Items.Count == aPanel.Source.Items.Where(item => item.IsVisible == false).Count());
-                }
-            }
-            catch (Exception ex)
-            {
-                StringEvent.Execute(uiapp, ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Выполнение команды кнопкой
-        /// </summary>
-        /// <param name="obj"></param>
-        private void DoExecute(object obj)
-        {
-            SecondRibbonButton button = obj as SecondRibbonButton;
-            if (button == null)
-                return;
-
-            String message = String.Empty;
-            Result result = button.ExecuteCommand(ref message);
-            if (!String.IsNullOrEmpty(message))
-                StringEvent.Execute(button.Application, message);
+            RevitWorker.Instance.ImportUIApplication(new UIApplication(sender as Autodesk.Revit.ApplicationServices.Application));
         }
 
         /// <summary>
@@ -178,6 +78,13 @@ namespace RevitAdditionApp
         /// </returns>	  
         public Result Execute(ExternalCommandData commandData, ref String message, ElementSet elements)
         {
+            if (RevitWorker.Instance.SelectedPlugin != null)
+            {
+                Result result = RevitWorker.Instance.SelectedPlugin.Command.Execute(commandData, ref message, elements);
+                RevitWorker.Instance.SelectedPlugin = null;
+                return result;
+            }
+
             SettingsViewModel viewModel = new SettingsViewModel(commandData.Application);
             viewModel.UpdatePluginsFromCatalogEvent += ViewModel_UpdatePluginsFromCatalogEvent;
             SettingsView view = new SettingsView() { DataContext = viewModel };
@@ -198,46 +105,7 @@ namespace RevitAdditionApp
             if (application == null)
                 return;
 
-            RegenerationInfo(application, Assembly.GetExecutingAssembly().Location);
+            RevitWorker.Instance.GenerateAllItems();
         }
-
-        /// <summary>
-        /// Загрузка плагинов в программу
-        /// </summary>
-        /// <param name="pluginPath">Путь к плагинам</param>
-        /// <returns>Каталог, который объединяет элементы</returns>
-        private AggregateCatalog LoadPluginsToMemory(string pluginPath)
-        {
-            if (!Directory.Exists(pluginPath))
-                return null;
-
-            String[] files = Directory.GetFiles(pluginPath, "*Plugin.dll");
-            AggregateCatalog aggregateCatalog = new AggregateCatalog();
-
-            foreach (String file in files)
-            {
-                try
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
-                        {
-                            Byte[] bytes = new Byte[fs.Length];
-                            fs.Read(bytes, 0, (int)fs.Length);
-                            ms.Write(bytes, 0, (int)fs.Length);
-                            fs.Close();
-                            ms.Close();
-                            AssemblyCatalog assemblyCatalog = new AssemblyCatalog(Assembly.Load(ms.ToArray()));
-                            aggregateCatalog.Catalogs.Add(assemblyCatalog);
-                        }
-                    }
-                }
-                catch
-                { }
-            }
-
-            return aggregateCatalog;
-        }
-        #endregion
     }
 }

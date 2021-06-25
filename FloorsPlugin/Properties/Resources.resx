@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Title_Panel" xml:space="preserve">
-    <value>Импорт или экспорт</value>
+    <value>Import or export</value>
   </data>
   <data name="Title_Plugin" xml:space="preserve">
-    <value>Этажи из Excel файла</value>
+    <value>Floors from Excel file</value>
   </data>
   <data name="ToolTip_Button" xml:space="preserve">
-    <value>Загрузка данных из Excel файла для отрисовки этажей</value>
+    <value>Loading data from an Excel file for drawing floors</value>
   </data>
 </root>

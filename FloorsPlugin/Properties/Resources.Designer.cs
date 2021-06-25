@@ -61,7 +61,7 @@ namespace FloorsPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Импорт или экспорт.
+        ///   Looks up a localized string similar to Import or export.
         /// </summary>
         internal static string Title_Panel {
             get {
@@ -70,7 +70,7 @@ namespace FloorsPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Этажи из Excel файла.
+        ///   Looks up a localized string similar to Floors from Excel file.
         /// </summary>
         internal static string Title_Plugin {
             get {
@@ -79,7 +79,7 @@ namespace FloorsPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Загрузка данных из Excel файла для отрисовки этажей.
+        ///   Looks up a localized string similar to Loading data from an Excel file for drawing floors.
         /// </summary>
         internal static string ToolTip_Button {
             get {

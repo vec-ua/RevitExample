@@ -5,6 +5,8 @@ using FloorsPlugin.Properties;
 using FloorsPlugin.Settings;
 using System;
 using System.Configuration;
+using System.IO;
+using System.Reflection;
 
 namespace FloorsPlugin
 {

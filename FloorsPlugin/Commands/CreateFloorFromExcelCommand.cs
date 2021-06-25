@@ -37,7 +37,12 @@ namespace FloorsPlugin.Commands
         /// </returns>	  
         public override Result Execute(ExternalCommandData commandData, ref String message, ElementSet elements)
         {
-            return Execute(commandData.Application, ref message);
+            Transaction tr = new Transaction(commandData.Application.ActiveUIDocument.Document);
+            tr.Start("Добавление уровней из Excel");
+            Result result = Execute(commandData.Application, ref message);
+            tr.Commit();
+            tr.Dispose();
+            return result;
         }
 
         /// <summary>

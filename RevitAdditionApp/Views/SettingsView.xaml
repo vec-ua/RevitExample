@@ -30,7 +30,7 @@
                             <StackPanel Orientation="Horizontal">
                                 
                                 <!-- Описание кнопки -->
-                                <TextBlock Text="{Binding Name}" Margin="5,0" />
+                                <TextBlock Text="{Binding Plugin.Name}" Margin="5,0" />
                                 <!-- Флаг видимости кнопки -->
                                 <CheckBox Focusable="False" IsChecked="{Binding Visible}" VerticalAlignment="Center"/>
                                 

@@ -1,5 +1,6 @@
 ﻿using Autodesk.Windows;
 using CommonLibrary.Interfaces;
+using RevitAdditionApp.Properties;
 using System;
 using System.Linq;
 using System.Windows.Media.Imaging;
@@ -19,12 +20,6 @@ namespace RevitAdditionApp
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Прикрепленное приложения
-        /// </summary>
-        public Autodesk.Revit.UI.UIApplication Application
-        { get; private set; }
-
         /// <summary>
         /// Плагин привязаный к кнопке
         /// </summary>
@@ -58,20 +53,23 @@ namespace RevitAdditionApp
         /// </summary>
         /// <param name="plugin">Плагин привязаный к кнопке</param>
         /// <param name="application">Прикрепленное приложения</param>
-        public SecondRibbonButton(IRevitPlugin plugin, Autodesk.Revit.UI.UIApplication application, RibbonPanel panel)
+        public SecondRibbonButton(IRevitPlugin plugin, RibbonPanel panel)
         {
             Plugin = plugin;
-            Application = application;
             Panel = panel;
 
-            Name = Plugin.Name;
-            Id = plugin.SerialNumber.ToString();
+            Id = "CustomCtrl_%CustomCtrl_%" + Resources.Title_Tab + "%" + Plugin.PanelName + "%";
+
+            Name = plugin.Name;
+            Description = plugin.Name;
+            IsCheckable = false;
+
             AllowInStatusBar = true;
             AllowInToolBar = true;
             GroupLocation = Autodesk.Private.Windows.RibbonItemGroupLocation.Middle;
             IsToolTipEnabled = true;
-            base.IsVisible = Plugin.Visible;
-            base.IsEnabled = Plugin.Visible;
+            IsVisible = Plugin.Visible;
+            IsEnabled = Plugin.Visible;
             ShowImage = true;
             ShowText = true;
             Text = plugin.Name;
@@ -83,7 +81,6 @@ namespace RevitAdditionApp
             ResizeStyle = RibbonItemResizeStyles.HideText;
             IsCheckable = true;
             Orientation = System.Windows.Controls.Orientation.Vertical;
-            KeyTip = "ID-" + plugin.SerialNumber.ToString();
         }
         #endregion
 
@@ -94,21 +91,14 @@ namespace RevitAdditionApp
         /// <param name="plugin">Плагин</param>
         public void ChangeInfo(IRevitPlugin plugin)
         {
+            Id = "CustomCtrl_%CustomCtrl_%" + Resources.Title_Tab + "%" + Plugin.PanelName + "%";
+
+            Name = plugin.Name;
             Plugin = plugin;
             Text = plugin.Name;
             ToolTip = plugin.Name;
             LargeImage = new BitmapImage(plugin.BitmapUri);
             Visible = Plugin.Visible;
-        }
-
-        /// <summary>
-        /// Выполнить команду
-        /// </summary>
-        /// <param name="message">Сообщение</param>
-        /// <returns>Результат выполнения</returns>
-        public Autodesk.Revit.UI.Result ExecuteCommand(ref String message)
-        {
-            return Plugin.Command.Execute(Application, ref message);
         }
         #endregion
     }

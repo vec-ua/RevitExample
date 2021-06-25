@@ -61,7 +61,7 @@ namespace MessageBoxPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Визуализация.
+        ///   Looks up a localized string similar to Visualization.
         /// </summary>
         internal static string Title_Panel {
             get {
@@ -70,7 +70,7 @@ namespace MessageBoxPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Отображение сообщения.
+        ///   Looks up a localized string similar to Display message.
         /// </summary>
         internal static string Title_Plugin {
             get {
@@ -79,7 +79,7 @@ namespace MessageBoxPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Визуализация сообщения.
+        ///   Looks up a localized string similar to Message visualization.
         /// </summary>
         internal static string ToolTip_Button {
             get {

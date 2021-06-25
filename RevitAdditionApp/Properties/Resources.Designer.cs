@@ -61,7 +61,7 @@ namespace RevitAdditionApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Общее приложения для работы с данными.
+        ///   Looks up a localized string similar to Common data applications.
         /// </summary>
         internal static string Btn_ApplicationView_ToolTip {
             get {
@@ -70,7 +70,7 @@ namespace RevitAdditionApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Вкладка для приложения.
+        ///   Looks up a localized string similar to Application-test.
         /// </summary>
         internal static string Title_Tab {
             get {

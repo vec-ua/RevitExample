@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Btn_ApplicationView_ToolTip" xml:space="preserve">
-    <value>Общее приложения для работы с данными</value>
+    <value>Common data applications</value>
   </data>
   <data name="Title_Tab" xml:space="preserve">
-    <value>Вкладка для приложения</value>
+    <value>Application-test</value>
   </data>
 </root>
