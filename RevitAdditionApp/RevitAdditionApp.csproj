@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,7 +64,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviors\WindowStyleBehavior.cs" />
     <Compile Include="RevitWorker.cs" />
     <Compile Include="RevitApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -100,11 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">
-      <Project>{43ada0f0-0435-4877-9ea9-d5148a27708b}</Project>
+      <Project>{28793673-5946-490c-983b-59103ea8d895}</Project>
       <Name>CommonLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\SettingsView.xaml">
       <SubType>Designer</SubType>

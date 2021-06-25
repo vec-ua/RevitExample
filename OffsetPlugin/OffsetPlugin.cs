@@ -1,20 +1,18 @@
 ﻿using CommonLibrary.Interfaces;
 using CommonLibrary.Models;
-using FloorsPlugin.Commands;
-using FloorsPlugin.Properties;
-using FloorsPlugin.Settings;
+using OffsetPlugin.Commands;
+using OffsetPlugin.Properties;
+using OffsetPlugin.Settings;
 using System;
 using System.Configuration;
-using System.IO;
-using System.Reflection;
 
-namespace FloorsPlugin
+namespace OffsetPlugin
 {
-	/// <summary>
-	/// Плагин для импортирования данных из Excel файла
-	/// </summary>
-	public sealed class CreateFloorFromExcelPlugin : IRevitPlugin
-	{
+    /// <summary>
+    /// Плагин виполняет смещение данных
+    /// </summary>
+    public class OffsetPlugin : IRevitPlugin
+    {
 		#region Fields
 		/// <summary>
 		/// Общие настройки кнопки
@@ -27,7 +25,7 @@ namespace FloorsPlugin
 		/// Серийный номер
 		/// </summary>
 		public Guid SerialNumber
-		{ get { return new Guid("8305a045-c373-41c5-90b3-90cfe27a4a91"); } }
+		{ get { return new Guid("0e05eb25-6d13-4708-893c-9fca2216f91a"); } }
 
 		/// <summary>
 		/// Название плагина
@@ -50,8 +48,8 @@ namespace FloorsPlugin
 		/// <summary>
 		/// Команда
 		/// </summary>
-		public AbstractExecuteCommand Command 
-		{ get { return new CreateFloorFromExcelCommand(); } }
+		public AbstractExecuteCommand Command
+		{ get { return new OffsetCommand(); } }
 
 		/// <summary>
 		/// Флаг видимости плагина
@@ -70,17 +68,18 @@ namespace FloorsPlugin
 		/// Ресурс рисунка
 		/// </summary>
 		public Uri BitmapUri
-		{ get { return new Uri("pack://application:,,,/FloorsPlugin;component/Images/Button.png"); } }
+		{ get { return new Uri("pack://application:,,,/OffsetPlugin;component/Images/Button.png"); } }
 		#endregion
 
 		#region Constructor
 		/// <summary>
 		/// Конструктор
 		/// </summary>
-		public CreateFloorFromExcelPlugin()
-        {
+		public OffsetPlugin()
+		{
 			Settings = (GeneralSettings)SettingsBase.Synchronized(new GeneralSettings());
 		}
 		#endregion
+
 	}
 }

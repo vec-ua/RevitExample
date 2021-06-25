@@ -5,13 +5,17 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAdditionApp", "RevitAdditionApp\RevitAdditionApp.csproj", "{E3C8D87E-4C25-4B5D-8182-5DF867ECD704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{43ADA0F0-0435-4877-9EA9-D5148A27708B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{B1385578-C490-4101-A98E-72979AB4D910}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloorsPlugin", "FloorsPlugin\FloorsPlugin.csproj", "{9CB5F044-02B8-4797-BC90-512295C889C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBoxPlugin", "MessageBoxPlugin\MessageBoxPlugin.csproj", "{A990DAFC-63A1-4ECC-B093-D4498B555C6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffsetPlugin", "OffsetPlugin\OffsetPlugin.csproj", "{8637B96C-4DFC-4F0F-8B71-8707C5803157}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{3B0B8397-28CF-4140-B641-05B7BF9524BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{28793673-5946-490C-983B-59103EA8D895}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +27,6 @@ Global
 		{E3C8D87E-4C25-4B5D-8182-5DF867ECD704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3C8D87E-4C25-4B5D-8182-5DF867ECD704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3C8D87E-4C25-4B5D-8182-5DF867ECD704}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43ADA0F0-0435-4877-9EA9-D5148A27708B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43ADA0F0-0435-4877-9EA9-D5148A27708B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43ADA0F0-0435-4877-9EA9-D5148A27708B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43ADA0F0-0435-4877-9EA9-D5148A27708B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9CB5F044-02B8-4797-BC90-512295C889C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CB5F044-02B8-4797-BC90-512295C889C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB5F044-02B8-4797-BC90-512295C889C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,6 +35,14 @@ Global
 		{A990DAFC-63A1-4ECC-B093-D4498B555C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A990DAFC-63A1-4ECC-B093-D4498B555C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A990DAFC-63A1-4ECC-B093-D4498B555C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8637B96C-4DFC-4F0F-8B71-8707C5803157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8637B96C-4DFC-4F0F-8B71-8707C5803157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8637B96C-4DFC-4F0F-8B71-8707C5803157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8637B96C-4DFC-4F0F-8B71-8707C5803157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28793673-5946-490C-983B-59103EA8D895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28793673-5946-490C-983B-59103EA8D895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28793673-5946-490C-983B-59103EA8D895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28793673-5946-490C-983B-59103EA8D895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +50,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9CB5F044-02B8-4797-BC90-512295C889C9} = {B1385578-C490-4101-A98E-72979AB4D910}
 		{A990DAFC-63A1-4ECC-B093-D4498B555C6A} = {B1385578-C490-4101-A98E-72979AB4D910}
+		{8637B96C-4DFC-4F0F-8B71-8707C5803157} = {B1385578-C490-4101-A98E-72979AB4D910}
+		{28793673-5946-490C-983B-59103EA8D895} = {3B0B8397-28CF-4140-B641-05B7BF9524BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B23E14C-E0ED-4318-B514-01856486CD4A}

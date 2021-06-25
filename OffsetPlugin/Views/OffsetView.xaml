@@ -1,0 +1,78 @@
+﻿<Window x:Class="OffsetPlugin.Views.OffsetView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:comp="clr-namespace:CommonLibrary.Components;assembly=CommonLibrary"
+        xmlns:res="clr-namespace:OffsetPlugin.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static res:Resources.Title_Plugin}" Height="300" Width="780" MinHeight="300" MaxHeight="300" MinWidth="780" MaxWidth="780"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/CommonLibrary;component/Images/VEC.png">
+    <Window.Resources>
+       
+        <!-- Дополнительные ресурсы -->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Ресурс для получения стилей кнопок -->
+                <ResourceDictionary Source="pack://application:,,,/CommonLibrary;component/Components/Styles/MixedButtonStyle.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="mixedButtonStyle" TargetType="comp:MixedButton" BasedOn="{StaticResource {x:Type comp:MixedButton}}">
+                <Setter Property="BorderBrush" Value="Blue"/>
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="Height" Value="74"/>
+                <Setter Property="Width" Value="74"/>
+                <Setter Property="IconHeight" Value="0"/>
+                <Setter Property="IconWidth" Value="0"/>
+                <Setter Property="IsTabStop" Value="False"/>
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <!-- Описание окна -->
+        <TextBlock Text="SELECT ANGLE" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Margin="15"
+                   FontFamily="Roboto" Foreground="#FF8A92A5" FontSize="25"/>
+        
+        <!-- Кнопки для основного выбора угла -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="5" Text="5°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="10" Text="10°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="11,25" Text="11.25°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="15" Text="15°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="22,5" Text="22.5°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="30" Text="30°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="45" Text="45°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="60" Text="60°" Style="{StaticResource mixedButtonStyle}"/>
+            <comp:MixedButton Command="{Binding ButtonAngleCommand}" CommandParameter="90" Text="90°" Style="{StaticResource mixedButtonStyle}"/>
+        </StackPanel>
+
+        <!-- Выбор пользовательского значения -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Enter value angle" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Margin="15,0,5,15"
+                       FontFamily="Roboto" FontSize="20"/>
+            <TextBox Text="{Binding Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=150}" FontFamily="Roboto" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,15"
+                     Width="80"/>
+            <comp:MixedButton Command="{Binding UserAngleCommand}" Text="Confirm " Margin="5,0,15,15" Height="30" Width="160"
+                              FontWeight="Bold" FontFamily="Roboto" FontSize="15" CornerRadius="5"/>
+
+        </StackPanel>
+        
+    </Grid>
+</Window>

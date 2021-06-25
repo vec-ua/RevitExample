@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RevitAdditionApp.View"
-        xmlns:beh="clr-namespace:RevitAdditionApp.Behaviors"
+        xmlns:beh="clr-namespace:CommonLibrary.Behaviors;assembly=CommonLibrary"
         mc:Ignorable="d"
         Title="SettingsView" Height="450" Width="800"
         beh:WindowStyleBehavior.DisableMinimizeButton="True"
