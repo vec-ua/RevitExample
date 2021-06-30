@@ -215,6 +215,18 @@ namespace RevitAdditionApp
 
             return aggregateCatalog;
         }
+
+        /// <summary>
+        /// Показать пользовательское сообщение
+        /// </summary>
+        /// <param name="message">Сообщение</param>
+        public void ShowMessage(String message)
+        {
+            if (StringEvent == null)
+                StringEvent = new StringEventHandler();
+
+            StringEvent.Execute(AppUI, message);
+        }
         #endregion
     }
 }

@@ -80,8 +80,15 @@ namespace RevitAdditionApp
         {
             if (RevitWorker.Instance.SelectedPlugin != null)
             {
-                Result result = RevitWorker.Instance.SelectedPlugin.Command.Execute(commandData, ref message, elements);
+                IRevitPlugin plugin = RevitWorker.Instance.SelectedPlugin;
                 RevitWorker.Instance.SelectedPlugin = null;
+                Result result = plugin.Command.Execute(commandData, ref message, elements);
+                if (result != Result.Succeeded)
+                {
+                    RevitWorker.Instance.ShowMessage(message);
+                    result = Result.Succeeded;
+                }
+
                 return result;
             }
 

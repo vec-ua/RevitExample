@@ -61,6 +61,15 @@ namespace CommonLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cant create dialog because value is NULL.
+        /// </summary>
+        public static string Caption_CantCreateDialog {
+            get {
+                return ResourceManager.GetString("Caption_CantCreateDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Задача - ID потока: {0}, название потока: {1}, имя процесса: {2}.
         /// </summary>
         public static string Frmt_Exception_Srting {

@@ -73,6 +73,7 @@
     <Compile Include="Helpers\GridHelper.cs" />
     <Compile Include="Helpers\PanelHelper.cs" />
     <Compile Include="Interfaces\IRevitPlugin.cs" />
+    <Compile Include="Models\AbstractDialogViewModel.cs" />
     <Compile Include="Models\AbstractExecuteCommand.cs" />
     <Compile Include="Models\AbstractViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -89,7 +90,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="PropertyChangedNotify.cs" />
+    <Compile Include="Utils\ConduitUtils.cs" />
+    <Compile Include="Utils\ConnectoUtils.cs" />
     <Compile Include="Utils\DebugUtil.cs" />
+    <Compile Include="Utils\RevitUtils.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

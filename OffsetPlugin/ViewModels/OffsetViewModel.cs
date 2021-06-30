@@ -1,17 +1,15 @@
 ﻿using CommonLibrary.Commands;
 using CommonLibrary.Models;
-using OffsetPlugin.Properties;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace OffsetPlugin.ViewModels
 {
-    public sealed class OffsetViewModel : AbstractViewModel
+    /// <summary>
+    /// Представление для установки смещения выбранным градусом
+    /// </summary>
+    public sealed class OffsetViewModel : AbstractDialogViewModel
     {
         #region Commands
         /// <summary>
@@ -37,11 +35,11 @@ namespace OffsetPlugin.ViewModels
             get { return _Angle; }
             set
             {
-                if ((value >= 0) && (value <= 359))
+                if ((value >= 0) && (value <= 90))
                     _Angle = value;
 
-                if (value > 359)
-                    _Angle = 359;
+                if (value > 90)
+                    _Angle = 90;
 
                 if (value < 0)
                     _Angle = 0;
@@ -49,14 +47,21 @@ namespace OffsetPlugin.ViewModels
                 RaisePropertyChanged("Angle");
             }
         }
+
+        /// <summary>
+        /// Флаг отмены обработки данных
+        /// </summary>
+        public Boolean Canceled
+        { get; private set; }
         #endregion
 
         #region Constructor
         /// <summary>
         /// Конструктор
         /// </summary>
-        public OffsetViewModel()
+        public OffsetViewModel(Window managedDialog) : base(managedDialog)
         {
+            Canceled = true;
         }
         #endregion
 
@@ -67,7 +72,7 @@ namespace OffsetPlugin.ViewModels
         protected override void Initialize()
         {
             ButtonAngleCommand = new RelayCommand(DoButtonAngle, CanDoButtonAngle);
-            UserAngleCommand = new RelayCommand(DoUserAngle, () => (Angle > 0) && (Angle < 359));
+            UserAngleCommand = new RelayCommand(DoUserAngle, () => (Angle > 0) && (Angle <= 90));
         }
 
         /// <summary>
@@ -75,7 +80,8 @@ namespace OffsetPlugin.ViewModels
         /// </summary>
         private void DoUserAngle()
         {
-
+            Canceled = false;
+            ManagedDialogWindow.Close();
         }
 
         /// <summary>
@@ -84,7 +90,9 @@ namespace OffsetPlugin.ViewModels
         /// <param name="obj">Выбраный угол</param>
         private void DoButtonAngle(object obj)
         {
+            Canceled = false;
             Angle = Double.Parse(obj.ToString());
+            ManagedDialogWindow.Close();
         }
 
         /// <summary>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Caption_CantCreateDialog" xml:space="preserve">
+    <value>Cant create dialog because value is NULL</value>
+  </data>
   <data name="Frmt_Exception_Srting" xml:space="preserve">
     <value>Задача - ID потока: {0}, название потока: {1}, имя процесса: {2}</value>
   </data>

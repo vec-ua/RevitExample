@@ -1,5 +1,4 @@
-﻿
-namespace CommonLibrary.Models
+﻿namespace CommonLibrary.Models
 {
     /// <summary>
     /// Абстрактный класс представления модели
